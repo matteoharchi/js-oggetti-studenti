@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    //Creare un oggetto che descriva uno studente con le seguenti proprietà: nome, cognome ed età.
+// Stampare a schermo attraverso il for in tutte le proprietà.
     var studente = {
         "nome": "Matteo",
         "cognome": "Harchi",
@@ -7,6 +9,9 @@ $(document).ready(function(){
     for (var key in studente) {
         console.log(studente[key]);
     }
+    // Creare un array di oggetti di studenti.
+    //Ciclare su tutti gli studenti e stampare per
+    //ognuno nome e cognome
     var partecipanti = [
 
         {
@@ -21,11 +26,15 @@ $(document).ready(function(){
         },
     ];
     var listaStudenti = ".customers-list";
-    var templateStudente = $(".customers-list li");
+    var templateStudente = $(".customers-list ul li");
     for (var i = 0; i < partecipanti.length; i++){
         console.log(partecipanti[i].nome);
         templateStudente[i].append(partecipanti[i].nome + " " + partecipanti[i].cognome);
     };
+
+    //Dare la possibilità all’utente attraverso 3 prompt
+    //di aggiungere un nuovo oggetto
+    //studente inserendo nell’ordine: nome, cognome e età
 
     $("#newclient").click(inserimentoDati);
 
@@ -42,12 +51,7 @@ $(document).ready(function(){
         };
         partecipanti.push(nuovoUtente);
         var addStudent = templateStudente.clone();
-        $(".list").append(addStudent);
         var nuovoUtenteName = nuovoUtente.nome +" " + nuovoUtente.cognome;
-        addStudent.text(nuovoUtenteName);
+        $(".list").append(addStudent.text(nuovoUtenteName));
     }
-
-    console.log(partecipanti);
-
-
 })
