@@ -27,14 +27,14 @@ $(document).ready(function(){
         templateStudente[i].append(partecipanti[i].nome + " " + partecipanti[i].cognome);
     };
 
-    $("#confirm").click(inserimentoDati);
+    $("#newclient").click(inserimentoDati);
 
 
     function inserimentoDati(){
 
-        var newName = $("#name").val();
-        var newSurname = $("#surname").val();
-        var newAge = parseInt($("#age").val());
+        var newName = prompt("Inserisci il tuo nome");
+        var newSurname = prompt("Inserisci il tuo cognome");
+        var newAge = parseInt(prompt("Inserisci la tua età"));
         var nuovoUtente = {
             "nome" : newName,
             "cognome": newSurname,
