@@ -54,5 +54,6 @@ $(document).ready(function(){
         var addStudent = newStudenteTemplate.clone();
         var nuovoUtenteName = nuovoUtente.nome +" " + nuovoUtente.cognome;
         $(".list").append(addStudent.text(nuovoUtenteName));
+        $(".list li:last-child").removeClass("template");
     }
 })
