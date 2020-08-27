@@ -26,7 +26,7 @@ $(document).ready(function(){
         },
     ];
     var listaStudenti = ".customers-list";
-    var templateStudente = $(".customers-list ul li");
+    var templateStudente = $(".customers-list ul li ");
     for (var i = 0; i < partecipanti.length; i++){
         console.log(partecipanti[i].nome);
         templateStudente[i].append(partecipanti[i].nome + " " + partecipanti[i].cognome);
@@ -50,7 +50,8 @@ $(document).ready(function(){
             "età" : newAge,
         };
         partecipanti.push(nuovoUtente);
-        var addStudent = templateStudente.clone();
+        var newStudenteTemplate = $("li.template")
+        var addStudent = newStudenteTemplate.clone();
         var nuovoUtenteName = nuovoUtente.nome +" " + nuovoUtente.cognome;
         $(".list").append(addStudent.text(nuovoUtenteName));
     }
