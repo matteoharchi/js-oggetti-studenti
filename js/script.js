@@ -25,22 +25,23 @@ $(document).ready(function(){
             "eta": 46,
         },
     ];
-    var listaStudenti = ".customers-list";
-    var templateStudente = $(".customers-list ul li ");
-    for (var i = 0; i < partecipanti.length; i++){
-        console.log(partecipanti[i].nome);
-        templateStudente[i].append(partecipanti[i].nome + " " + partecipanti[i].cognome);
-    };
+    insert(partecipanti);
+    //Template Handlebars
+    //Ciclo i nomi dell'array nel template
+    function insert(studenti){
 
-    //Dare la possibilità all’utente attraverso 3 prompt
-    //di aggiungere un nuovo oggetto
-    //studente inserendo nell’ordine: nome, cognome e età
+        var source = $("#students-template").html();
+        var template = Handlebars.compile(source);
+        for (var i = 0; i < studenti.length; i++) {
+            var html = template(studenti[i]);
+            $(".students-list").append(html);
+        }
 
-    $("#newclient").click(inserimentoDati);
+    }
 
 
-    function inserimentoDati(){
-
+    //funzione inserimento nuovo utente
+    $("#newclient").click(function(){
         var newName = prompt("Inserisci il tuo nome");
         var newSurname = prompt("Inserisci il tuo cognome");
         var newAge = parseInt(prompt("Inserisci la tua età"));
@@ -48,12 +49,56 @@ $(document).ready(function(){
             "nome" : newName,
             "cognome": newSurname,
             "età" : newAge,
-        };
+        }
         partecipanti.push(nuovoUtente);
-        var newStudenteTemplate = $("li.template")
-        var addStudent = newStudenteTemplate.clone();
-        var nuovoUtenteName = nuovoUtente.nome +" " + nuovoUtente.cognome;
-        $(".list").append(addStudent.text(nuovoUtenteName));
-        $(".list li:last-child").removeClass("template");
-    }
+        $(".students-list").empty();
+        insert(partecipanti);
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //SENZA HANDLEBARS
+//     var listaStudenti = ".customers-list";
+//     var templateStudente = $(".customers-list ul li ");
+//     for (var i = 0; i < partecipanti.length; i++){
+//         console.log(partecipanti[i].nome);
+//         templateStudente[i].append(partecipanti[i].nome + " " + partecipanti[i].cognome);
+//     };
+//
+//     //Dare la possibilità all’utente attraverso 3 prompt
+//     //di aggiungere un nuovo oggetto
+//     //studente inserendo nell’ordine: nome, cognome e età
+//
+//     $("#newclient").click(inserimentoDati);
+//
+//
+    // function inserimentoDati(){
+    //
+    //     var newName = prompt("Inserisci il tuo nome");
+    //     var newSurname = prompt("Inserisci il tuo cognome");
+    //     var newAge = parseInt(prompt("Inserisci la tua età"));
+    //     var nuovoUtente = {
+    //         "nome" : newName,
+    //         "cognome": newSurname,
+    //         "età" : newAge,
+    //     };
+    //     partecipanti.push(nuovoUtente);
+    //     var newStudenteTemplate = $("li.template")
+    //     var addStudent = newStudenteTemplate.clone();
+    //     var nuovoUtenteName = nuovoUtente.nome +" " + nuovoUtente.cognome;
+    //     $(".list").append(addStudent.text(nuovoUtenteName));
+    //     $(".list li:last-child").removeClass("template");
+    // }
 })
